@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
 import beerLogo from '../images/beer.svg'
+import BartenderConnection from './bartender_connection'
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -31,7 +32,8 @@ export default class Header extends React.Component {
         <div className="container d-flex justify-content-between">
           <Link className="mr-auto navbar-brand" to="/recipes">
             <img className="mr-3" src={beerLogo} />
-            <strong>Bartender AI</strong>
+            <strong>Bartender AI </strong>
+            <BartenderConnection />
           </Link>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>

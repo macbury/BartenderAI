@@ -1,4 +1,4 @@
-import { observable, action, flow } from 'mobx'
+import { observable, computed, flow } from 'mobx'
 import { getBartender, saveBartender } from '../api/bartender'
 
 class Bartender {
@@ -18,6 +18,11 @@ class Bartender {
     const errors = yield saveBartender(this.currentBartender)
     return errors
   }.bind(this))
+
+  @computed
+  get isOnline() {
+    return this.currentBartender && this.currentBartender.status !== 'offline'
+  }
 }
 
 const bartender = new Bartender()
