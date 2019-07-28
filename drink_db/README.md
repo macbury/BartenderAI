@@ -12,11 +12,14 @@ This is simple rails application that is central point of our bartender ecosyste
 Just run these commands:
 
 ```bash
+bundle install
+pip3 install -f requirements.txt
 cp .env.example .env
 docker-compose up
 rake db:create
 rake db:migrate
-rails s
+python3 bridge/login.py
+foreman start
 bin/webpack-dev-server
 ```
 
@@ -41,7 +44,6 @@ GOOGLE_CLIENT_SECRET=xxxxxxxxx
 
 ```
 heroku run rake db:migrate db:seed --app drinks-db
-ngrok http 3000
 ```
 
 ## References
