@@ -1,10 +1,14 @@
-import { observable, computed, flow } from 'mobx'
-import { getBartender, saveBartender } from '../api/bartender'
+import { observable, computed, flow, runInAction, action } from 'mobx'
+import { getBartender, saveBartender, onBartenderUpdate } from '../api/bartender'
 
 class Bartender {
   @observable currentBartender = null
   @observable loading = true
   @observable errors = []
+
+  constructor() {
+    this.setup()
+  }
 
   refresh = flow(function * () {
     this.loading = true
@@ -22,6 +26,18 @@ class Bartender {
   @computed
   get isOnline() {
     return this.currentBartender && this.currentBartender.status !== 'offline'
+  }
+
+  @action async setup() {
+    this.refresh()
+
+    onBartenderUpdate().subscribe({
+      next: ({ data: { onBartenderUpdate: bartender } }) => {
+        runInAction('Update bartender through websocket', () => {
+          this.currentBartender.status = bartender.status
+        })
+      }
+    })
   }
 }
 

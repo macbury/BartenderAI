@@ -37,3 +37,15 @@ export async function saveBartender({ enablePayment }) {
     console.error("Could not update bartender", e)
   }
 }
+
+export function onBartenderUpdate() {
+  const query = gql`
+    subscription {
+      onBartenderUpdate {
+        status
+      }
+    }
+  `
+
+  return client.subscribe({ query })
+}
