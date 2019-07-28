@@ -7,7 +7,7 @@ module Mutations
 
     def resolve(message:, translation_key: false)
       message = translation_key ? get_translation(message) : message
-      HTTParty.get('http://localhost:7123?message=' + message)
+      redis.publish('alexa:say', message)
       { success: true }
     end
 
@@ -20,6 +20,10 @@ module Mutations
       else
         translations
       end
+    end
+
+    def redis
+      @redis ||= Redis.new(uri: ENV.fetch('REDIS_URL'))
     end
   end
 end

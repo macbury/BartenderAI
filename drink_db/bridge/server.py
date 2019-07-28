@@ -1,24 +1,20 @@
-import tornado.ioloop
-import tornado.web
 import os
+import redis
+import time
 from dotenv import load_dotenv
 from alexa_say import AlexaBridge
 
 load_dotenv()
+redis = redis.from_url(os.getenv('REDIS_URL'))
+
+channel = redis.pubsub(ignore_subscribe_messages=True)
+channel.subscribe('alexa:say')
+
 bridge = AlexaBridge(os.getenv('ALEXA_EMAIL'), os.getenv('ALEXA_PASSWORD'), os.getenv('ALEXA_DEVICE_NAME'))
 bridge.auth(None)
 
-class MainHandler(tornado.web.RequestHandler):
-  def get(self):
-    bridge.say(self.get_argument("message", None, True))
-    self.write("ok")
-
-def make_app():
-  return tornado.web.Application([
-    (r"/", MainHandler),
-  ])
-
-if __name__ == "__main__":
-  app = make_app()
-  app.listen(7123)
-  tornado.ioloop.IOLoop.current().start()
+while True:
+  message = channel.get_message()
+  if message:
+    bridge.say(message['data'].decode('utf-8'))
+  time.sleep(0.001)
