@@ -1,0 +1,9 @@
+source 'http://rubygems.org'
+
+gem 'pry'
+gem 'action_cable_client', '~> 3.0', '>= 3.0.1'
+gem 'dry-transaction'
+gem 'httparty'
+gem 'dotenv'
+gem 'grpc'
+gem 'grpc-tools'

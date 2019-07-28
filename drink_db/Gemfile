@@ -1,0 +1,47 @@
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '2.5.1'
+
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 5.2.2'
+gem 'pg', '>= 0.18', '< 2.0'
+gem 'puma', '~> 3.11'
+gem 'webpacker'
+gem 'dotenv-rails'
+gem 'graphql'
+gem 'omniauth'
+gem 'uglifier'
+gem 'omniauth-google-oauth2'
+gem 'graphiql-rails', require: false
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'dry-transaction'
+gem 'aws-sdk-iotdataplane', '~> 1.6'
+gem 'ralyxa'
+gem 'pry'
+gem 'pry-rails'
+gem 'redis'
+gem 'money-rails', '~> 1.13', '>= 1.13.1'
+gem 'chronic'
+gem 'httparty'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.8'
+  gem 'webmock'
+  gem 'vcr'
+  gem 'rspec'
+  gem 'factory_bot', '~> 4.10'
+  gem 'shoulda-matchers', require: 'shoulda/matchers'
+  gem 'database_cleaner', '~> 1.7'
+  gem 'timecop'
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'listen'
+  gem 'rb-readline'
+end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

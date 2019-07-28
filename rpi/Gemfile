@@ -1,0 +1,9 @@
+source 'http://rubygems.org'
+
+gem 'rpi_gpio' if RUBY_PLATFORM=~ /arm-linux-gnueabihf/
+gem 'pry'
+gem 'action_cable_client', '~> 3.0', '>= 3.0.1'
+gem 'dry-transaction'
+gem 'httparty'
+gem 'dotenv'
+gem 'rb-readline'

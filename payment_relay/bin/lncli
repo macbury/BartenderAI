@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+lncli --network testnet --macaroonpath data/lnd/data/chain/bitcoin/testnet/admin.macaroon --lnddir data/lnd ${@}
+#lncli --rpcserver 192.168.1.89:10009 --network testnet --macaroonpath data/lnd/data/chain/bitcoin/testnet/admin.macaroon --lnddir data/lnd ${@}

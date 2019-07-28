@@ -1,0 +1,158 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "bartender",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "MakeDrink",
+                    "slots": [
+                        {
+                            "name": "DrinkName",
+                            "type": "AMAZON.Drink",
+                            "samples": [
+                                "vodka",
+                                "mojito",
+                                "sex on the beach",
+                                "black russian"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "pour a {DrinkName}",
+                        "make the {DrinkName}",
+                        "pour the {DrinkName}",
+                        "make a {DrinkName}",
+                        "pour {DrinkName}",
+                        "make {DrinkName}",
+                        "make a drink {DrinkName}",
+                        "make me a {DrinkName} drink",
+                        "make me the {DrinkName}",
+                        "prepare the {DrinkName}",
+                        "prepare {DrinkName}",
+                        "make me a drink {DrinkName}",
+                        "pour me {DrinkName}",
+                        "make me {DrinkName}",
+                        "prepare me {DrinkName}",
+                        "prepare me a {DrinkName}",
+                        "make me a {DrinkName}",
+                        "i want a drink {DrinkName}"
+                    ]
+                },
+                {
+                    "name": "ListDrinks",
+                    "slots": [],
+                    "samples": [
+                        "menu",
+                        "menu of drinks",
+                        "drink menu",
+                        "list drinks",
+                        "what drink you prepare",
+                        "what drinks do you know",
+                        "what drinks you can make",
+                        "what you can do",
+                        "what you can make",
+                        "what you know exactly",
+                        "what drinks you can prepare"
+                    ]
+                },
+                {
+                    "name": "AboutDrink",
+                    "slots": [
+                        {
+                            "name": "DrinkName",
+                            "type": "AMAZON.Drink"
+                        }
+                    ],
+                    "samples": [
+                        "what is {DrinkName}",
+                        "describe me {DrinkName}",
+                        "tell me about {DrinkName}",
+                        "how do you prepare {DrinkName}",
+                        "what {DrinkName} have",
+                        "what ingredients {DrinkName}",
+                        "how you prepare {DrinkName}",
+                        "what ingredients {DrinkName} have"
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "MakeDrink",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.668544832507"
+                    },
+                    "slots": [
+                        {
+                            "name": "DrinkName",
+                            "type": "AMAZON.Drink",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.746871660932.843562851218"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "AboutDrink",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "DrinkName",
+                            "type": "AMAZON.Drink",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.746871660932.843562851218",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What drink exactly?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.668544832507",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Do you want to make {DrinkName} ?"
+                    }
+                ]
+            }
+        ]
+    }
+}

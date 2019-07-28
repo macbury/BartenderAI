@@ -1,0 +1,12 @@
+development:
+  adapter: redis
+  url: <%= ENV.fetch("REDIS_URL") %>
+  channel_prefix: drinks_dev
+
+test:
+  adapter: async
+
+production:
+  adapter: redis
+  url: <%= ENV.fetch("REDIS_URL") %>
+channel_prefix: drinks_production

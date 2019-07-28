@@ -1,0 +1,40 @@
+
+en:
+  alexa:
+    assembler:
+      put_glass:
+        - Please put glass for the drink
+        - I can't make a drink without a glass, Dude
+        - Builds are red, deploys are green, put your glass or no drink for you
+      start_pouring:
+        - Ok, now I will start blending the ingredients
+        - Starting preparing drink for you cutie
+        - Abra kadabra, the preparation of drink starts now!
+      glass_not_present:
+        - No glass, no drink, your order is rejected!
+      drink_done_take_glass:
+        - Hey, Your drink is ready, You can take it now!
+        - Puny human, your drink is ready.
+        - Resistance is futile, take your drink
+        - Have a nice night, or day. I don't judge.
+      thankyou:
+        - See you later
+        - Bye, I'm watching you
+        - Bye and Hail the machines!
+        - Bye, You should come back here in 20 minutes
+    success:
+      waiting_for_invoice:
+        - oki doki, Please scan QR code from screen with bitcoin lighting wallet to pay for %{name}
+        - Awesome, Please scan QR code from screen with bitcoin lighting wallet to pay for %{name}
+        - Yes sir, Please scan QR code from screen with bitcoin lighting wallet to pay for %{name}
+      make_a_drink:
+        - Awesome, I will now prepare %{name} specially for you!
+        - Yes sir, you will get %{name} in few seconds!
+        - Ai, Ai captain, %{name} drink is in preparation
+        - Preparing now %{name}
+        - oki doki, meaking now %{name}
+    failures:
+      make_a_drink:
+        - Hmm..., %{error}! What you want me to do now?
+        - Oh no, %{error}! You want to make me to do now?
+        - Jeez, %{error}! Ask me something else

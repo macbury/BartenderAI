@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+# Convert audio request from alexa console into audio file used by bartender. these files are in network panel from https://developer.amazon.com/alexa/console/ask/test/amzn1.ask.skill.xxx/development/en_US/
+# bin/convert_audio audio/put_glass.json audio/put_glass.mp3
+require 'bundler/setup'
+require 'json'
+require "base64"
+
+json_path = ARGV[0]
+mp3_path = ARGV[1]
+JSON.parse(File.open(json_path).read)['audioFiles'].each_with_index do |content, index|
+  f = File.new(mp3_path, 'wb')
+  f.write Base64.decode64(content)
+  f.close
+end
