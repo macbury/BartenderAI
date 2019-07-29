@@ -1,3 +1,3 @@
 intent 'LaunchRequest' do
-  ask("Welcome to AI bartender. Would you like a drink, or list of drinks?")
+  ask(I18n.t('alexa.welcome').sample)
 end

@@ -16,3 +16,7 @@ ADA - Autonomus Distributor Alcohol
 > Alexa ask bartender to pour black russian
 
 > Alexa ask bartender what drinks you can prepare
+
+# Statistics
+
+https://io.adafruit.com/codesthq/dashboards/alcometer

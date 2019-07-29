@@ -12,6 +12,7 @@ require "active_job/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
 require_relative '../lib/btc_exchange'
+require_relative '../lib/iftt_webhook'
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems

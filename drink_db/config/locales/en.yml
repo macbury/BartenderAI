@@ -1,6 +1,15 @@
 
 en:
   alexa:
+    help: |
+      If you want to know what drinks to make just say What drinks you can prepare?
+      If you want to make a drink just say Make me a Vodka Sunrise
+      If you don't know what is in drink jusk ask Tell me about Vodka Sunrise
+      If you have any problem just scream HELP
+    welcome:
+      - Welcome to bartender AI. Would you like a drink, or list of drinks?
+      - Hello there and welcome to bartender AI. Would you list of drinks or a drink?
+      - Whats up? I'm bartender AI. Would you like a drink, or list of drinks?
     assembler:
       put_glass:
         - Please put glass for the drink

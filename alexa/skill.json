@@ -93,6 +93,15 @@
                         "how you prepare {DrinkName}",
                         "what ingredients {DrinkName} have"
                     ]
+                },
+                {
+                    "name": "Help",
+                    "slots": [],
+                    "samples": [
+                        "Help me with preparation of drink",
+                        "Help",
+                        "Help me"
+                    ]
                 }
             ],
             "types": []

@@ -11,7 +11,7 @@ require_relative 'rpi'
 require_relative 'pinger'
 
 logger = Logger.new(STDOUT)
-glass = GlassDetector.new
+glass = GlassDetector.new(trigger_pin: 16, echo_pin: 18, distance_to_glass: 5)
 relay = Relay.new
 
 api = DrinksDBApi.new(
@@ -46,11 +46,11 @@ begin
       assembler.remove(order)
     end
 
-    glass.start
     assembler.start
     pinger.start
     pool.start
   end
 ensure
   relay.reset
+  glass.reset
 end
