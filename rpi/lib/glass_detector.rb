@@ -8,8 +8,8 @@ class GlassDetector
     @echo_pin = echo_pin
     @distance_to_glass = distance_to_glass
 
-    RPi::GPIO.setup @trigger_pin, as: :output, initialize: :low
-    RPi::GPIO.setup @echo_pin, as: :input
+    # RPi::GPIO.setup @trigger_pin, as: :output, initialize: :low
+    # RPi::GPIO.setup @echo_pin, as: :input
   end
 
   def present?
@@ -33,8 +33,8 @@ class GlassDetector
   end
 
   def reset
-    RPi::GPIO.clean_up(@trigger_pin)
-    RPi::GPIO.clean_up(@echo_pin)
+    # RPi::GPIO.clean_up(@trigger_pin)
+    # RPi::GPIO.clean_up(@echo_pin)
   end
 
   private
