@@ -16,5 +16,7 @@ bridge.auth(None)
 while True:
   message = channel.get_message()
   if message:
-    bridge.say(message['data'].decode('utf-8'))
-  time.sleep(0.001)
+    content = message['data'].decode('utf-8')
+    print("Saying: %s".format(content))
+    bridge.say(content)
+  time.sleep(0.1)
