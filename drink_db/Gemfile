@@ -25,6 +25,7 @@ gem 'redis'
 gem 'money-rails', '~> 1.13', '>= 1.13.1'
 gem 'chronic'
 gem 'httparty'
+gem 'bitcoin-ruby'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.8'

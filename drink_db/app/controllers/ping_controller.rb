@@ -3,10 +3,8 @@ class PingController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def update
-    ActiveRecord::Base.transaction do
-      Order.reject_old!
-      BTCExchange.refresh!
-    end
+    CheckPayments.call
+    BTCExchange.refresh!
     render json: { ok: true }
   end
 end

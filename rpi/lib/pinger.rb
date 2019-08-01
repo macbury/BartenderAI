@@ -16,7 +16,7 @@ class Pinger
   def ping
     operation = -> { api.ping }
     callback = -> (_) do
-      EventMachine.add_timer(10) { ping }
+      EventMachine.add_timer(3) { ping }
     end
 
     EventMachine.defer(operation, callback)

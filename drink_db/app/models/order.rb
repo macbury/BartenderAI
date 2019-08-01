@@ -1,11 +1,11 @@
 class Order < ApplicationRecord
   belongs_to :recipe
-  enum status: [:pending, :preparing, :done, :rejected, :waiting_for_payment, :waiting_for_invoice]
+  enum status: [:pending, :preparing, :done, :rejected, :waiting_for_payment]
 
-  scope :by_uid, ->(order_id) { where(id: order_id).or(where(payment_request: order_id)) }
+  scope :by_uid, ->(order_id) { where(id: order_id).or(where(bitcoin_key: order_id)) }
   scope :in_queue, -> { pending.or(preparing) }
-  scope :payment_stuff, -> { waiting_for_invoice.or(waiting_for_payment) }
-  scope :processed, -> { in_queue.or(payment_stuff) }
+  scope :processed, -> { in_queue.or(waiting_for_payment) }
+  scope :with_payments, -> { where.not(bitcoin_key: nil) }
   scope :timeout, -> { where('updated_at <= ?', 5.minutes.ago) }
 
   monetize :price_cents, as: :price
@@ -15,7 +15,11 @@ class Order < ApplicationRecord
   after_create :consume_liquid
 
   def self.reject_old!
-    in_queue.or(payment_stuff).timeout.update_all(status: :rejected)
+    in_queue.or(waiting_for_payment).timeout.update_all(status: :rejected)
+  end
+
+  def bitcoin
+    @bitcoin ||= Bitcoin::Key.from_base58(self.bitcoin_key)
   end
 
   def push_to_client

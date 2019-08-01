@@ -47,15 +47,15 @@ export default class Header extends React.Component {
               <NavItem>
                 <NavLink className="nav-link" to="/orders" onClick={this.hideSidebar.bind(this)}>Orders</NavLink>
               </NavItem>
-              {/* <NavItem>
+              <NavItem>
                 <NavLink className="nav-link" to="/payments" onClick={this.hideSidebar.bind(this)}>Payments</NavLink>
-              </NavItem> */}
+              </NavItem>
               <NavItem>
                 <NavLink className="nav-link" to="/api/explorer" onClick={this.hideSidebar.bind(this)}>Api Explorer</NavLink>
               </NavItem>
-              {/* <NavItem>
+              <NavItem>
                 <NavLink className="nav-link" to="/settings" onClick={this.hideSidebar.bind(this)}>Settings</NavLink>
-              </NavItem> */}
+              </NavItem>
 
               <NavItem>
                 <a className="nav-link" href="/signout">Logout</a>

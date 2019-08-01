@@ -34,8 +34,9 @@ class MakeADrink < BaseTransaction
   def create_order(recipe)
     if Bartender.current.enable_payment?
       recipe.orders.create!(
-        status: :waiting_for_invoice,
-        price: recipe.price.exchange_to('BTC')
+        status: :waiting_for_payment,
+        price: recipe.price.exchange_to('BTC'),
+        bitcoin_key: Bitcoin::Key.generate.to_base58
       )
     else
       recipe.orders.create!(status: :pending)

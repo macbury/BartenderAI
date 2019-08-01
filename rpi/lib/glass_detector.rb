@@ -1,9 +1,6 @@
-# use pir to sample distance
-# if distance is 20% for center then glass is ok
-# change status of glass on remote endpoint
-# change status locally
-SLEEP_BETWEEN_SCANS = 0.5
 class GlassDetector
+  TIMEOUT = 0.020
+  SLEEP_BETWEEN_SCANS = 0.5
   def initialize(sensor_pin:, distance_to_glass:, logger:)
     @sensor_pin = sensor_pin
     @distance_to_glass = distance_to_glass

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_11_133242) do
+ActiveRecord::Schema.define(version: 2019_08_01_200827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 2019_04_11_133242) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "payment_request"
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "BTC", null: false
+    t.string "bitcoin_key"
     t.index ["recipe_id"], name: "index_orders_on_recipe_id"
   end
 

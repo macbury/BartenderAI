@@ -5,7 +5,7 @@ export async function fetchPendingOrders() {
     {
       orders(status: Processed) {
         id
-        paymentRequest
+        paymentAddress
         status
         recipe {
           name
@@ -50,7 +50,7 @@ export function onUpdateOrder() {
     subscription {
       onUpdateOrder {
         id
-        paymentRequest
+        paymentAddress
         status
         recipe {
           name

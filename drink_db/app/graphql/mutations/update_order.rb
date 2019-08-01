@@ -4,7 +4,6 @@ module Mutations
 
     argument :id, ID, required: true
     argument :status, String, required: false
-    argument :payment_request, String, required: false
 
     field :order, Types::OrderType, null: true
     field :errors, [String], null: false

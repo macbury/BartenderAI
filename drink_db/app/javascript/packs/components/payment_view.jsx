@@ -9,14 +9,16 @@ function PaymentView({ order }) {
     return <TutorialQuotes />
   }
 
-  const { status, paymentRequest } = order
+  const { status } = order
 
   if (status === 'waiting_for_invoice') {
     return <Spinner />
   } else if (status === 'waiting_for_payment') {
+    const { price: { value }, paymentAddress } = order
+    const paymentUri = `bitcoin:${paymentAddress}?amount=${value}`
     return (
       <div className="qr-container">
-        <QRCode value={paymentRequest}
+        <QRCode value={paymentUri}
                 size={512}
                 fgColor="#000"
                 bgColor="#fff"

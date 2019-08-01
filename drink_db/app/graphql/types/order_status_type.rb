@@ -6,7 +6,6 @@ module Types
     value 'Preparing', value: :preparing
     value 'Done', value: :done
     value 'Rejected', value: :rejected
-    value 'WaitingForInvoice', value: :waiting_for_invoice
     value 'WaitingForPayment', value: :waiting_for_payment
   end
 end
