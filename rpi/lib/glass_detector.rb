@@ -2,19 +2,22 @@
 # if distance is 20% for center then glass is ok
 # change status of glass on remote endpoint
 # change status locally
+SLEEP_BETWEEN_SCANS = 0.5
 class GlassDetector
-  def initialize(trigger_pin:, echo_pin:, distance_to_glass:)
-    @trigger_pin = trigger_pin
-    @echo_pin = echo_pin
+  def initialize(sensor_pin:, distance_to_glass:, logger:)
+    @sensor_pin = sensor_pin
     @distance_to_glass = distance_to_glass
+    @current_distance = 100000
+    @logger = logger
+  end
 
-    # RPi::GPIO.setup @trigger_pin, as: :output, initialize: :low
-    # RPi::GPIO.setup @echo_pin, as: :input
+  def start
+    @running = true
+    Thread.new { main_loop }
   end
 
   def present?
-    true
-    #accurate_measure <= @distance_to_glass
+    @current_distance <= @distance_to_glass
   end
 
   def wait_for_it(seconds = 60)
@@ -27,42 +30,61 @@ class GlassDetector
   end
 
   def wait_for_removal
-    # while present?
-    #   sleep 0.1
-    # end
+    while present?
+      sleep 1
+    end
   end
 
   def reset
-    # RPi::GPIO.clean_up(@trigger_pin)
-    # RPi::GPIO.clean_up(@echo_pin)
+    @running = false
   end
 
   private
 
-  # @return [Integer] centimeters
-  def accurate_measure
-    Array.new(7){ sleep(50e-3); self.measure }.sort.slice(2..4).reduce(:+) / 3
-  end 
-
-  def measure
-    return nil if @lock
-    @lock = true
-
-    Timeout::timeout(1) do
-      RPi::GPIO.set_high @trigger_pin
-      sleep 10e-6
-      RPi::GPIO.set_low @trigger_pin
-
-      {} while RPi::GPIO.low?(@echo_pin)
-      start = Time.now
-      {} while RPi::GPIO.high?(@echo_pin)
-      stop  = Time.now
-
-      (stop - start) * 34039 / 2
+  def main_loop
+    @end_time = 0.0
+    @start_time = 0.0
+    while @running
+      scan
+      sleep SLEEP_BETWEEN_SCANS
     end
-  rescue
-    nil
-  ensure
-    @lock = false
+  end
+
+  def scan
+    RPi::GPIO.setup @sensor_pin, as: :output
+
+    #cleanup output
+    RPi::GPIO.set_low @sensor_pin
+    sleep 0.000002
+
+    #send signal
+    RPi::GPIO.set_high @sensor_pin
+    sleep 0.000005
+
+    RPi::GPIO.set_low @sensor_pin
+
+    RPi::GPIO.setup @sensor_pin, as: :input
+
+    good_read = true
+    watch_time = Time.now.to_f
+
+    while RPi::GPIO.low?(@sensor_pin) && good_read
+      @start_time = Time.now.to_f
+      good_read = false if @start_time - watch_time > TIMEOUT
+    end
+  
+    if good_read
+      watch_time = Time.now.to_f
+      while RPi::GPIO.high?(@sensor_pin) && good_read
+        @end_time = Time.now.to_f
+        good_read = false if @end_time - watch_time > TIMEOUT
+      end
+    end
+  
+    if good_read
+      duration = @end_time - @start_time
+      @current_distance = duration * 34000/2
+      @logger.debug "Current distance to glass is: #{@current_distance}"
+    end
   end
 end
