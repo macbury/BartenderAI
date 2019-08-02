@@ -2,9 +2,11 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import QRCode from 'qrcode.react'
 import { Spinner } from 'reactstrap'
+import { Redirect } from 'react-router-dom'
 import TutorialQuotes from './tutorial_quotes'
 
-function PaymentView({ order }) {
+
+function PaymentView({ order, mode }) {
   if (!order) {
     return <TutorialQuotes />
   }
@@ -16,15 +18,20 @@ function PaymentView({ order }) {
   } else if (status === 'waiting_for_payment') {
     const { price: { value }, paymentAddress } = order
     const paymentUri = `bitcoin:${paymentAddress}?amount=${value}`
-    return (
-      <div className="qr-container">
-        <QRCode value={paymentUri}
-                size={512}
-                fgColor="#000"
-                bgColor="#fff"
-                renderAs="svg" />
-      </div>
-    )
+    if (mode === 'native') {
+      window.location.replace(paymentUri)
+      return null
+    } else {
+      return (
+        <div className="qr-container">
+          <QRCode value={paymentUri}
+                  size={512}
+                  fgColor="#000"
+                  bgColor="#fff"
+                  renderAs="svg" />
+        </div>
+      )
+    }
   }
 
   return <TutorialQuotes />

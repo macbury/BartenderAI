@@ -12,11 +12,11 @@ export default class PaymentsPage extends React.Component {
   }
 
   render() {
-    const { current } = this.props
+    const { current, match: { params: { mode } } } = this.props
 
     return (
       <div className="payment-view">
-        <PaymentView order={current} />
+        <PaymentView order={current} mode={mode}/>
       </div>
     )
   }

@@ -23,14 +23,25 @@ import PaymentsPage from './pages/payments'
 import OrdersPage from './pages/orders'
 import SettingsPage from './pages/settings'
 import ArUIPage from './pages/ar_ui'
+import InteractPage from './pages/interact'
 
-const WithAuth = (Component) => {
+const WithAuthAndLayout = (Component) => {
   return function(props) {
     return (
       <UserRequired>
         <Layout>
           <Component {...props} />
         </Layout>
+      </UserRequired>
+    )
+  }
+}
+
+const WithAuth = (Component) => {
+  return function(props) {
+    return (
+      <UserRequired>
+        <Component {...props} />
       </UserRequired>
     )
   }
@@ -43,16 +54,17 @@ const AppRouter = () => (
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/recipes" />}/>
-          <Route exact path="/payments" component={WithAuth(PaymentsPage)} />
-          <Route exact path="/ar" component={ArUIPage} />
-          <Route exact path="/orders" render={WithAuth(OrdersPage)}/>
-          <Route exact path="/recipes/new" render={WithAuth(NewRecipePage)}/>
-          <Route exact path="/recipes/:recipeId" render={WithAuth(EditRecipePage)}/>
-          <Route exact path="/recipes" render={WithAuth(RecipesPage)}/>
-          <Route exact path="/bottles/:bottleId" render={WithAuth(EditBottlePage)}/>
-          <Route exact path="/bottles" render={WithAuth(BottlesPage)}/>
-          <Route exact path="/settings" render={WithAuth(SettingsPage)}/>
-          <Route exact path="/api/explorer" render={WithAuth(ApiExplorerPage)}/>
+          <Route exact path="/payments/:mode" component={WithAuth(PaymentsPage)} />
+          <Route exact path="/interact" component={WithAuth(InteractPage)} />
+          <Route exact path="/ar" component={WithAuth(ArUIPage)} />
+          <Route exact path="/orders" render={WithAuthAndLayout(OrdersPage)}/>
+          <Route exact path="/recipes/new" render={WithAuthAndLayout(NewRecipePage)}/>
+          <Route exact path="/recipes/:recipeId" render={WithAuthAndLayout(EditRecipePage)}/>
+          <Route exact path="/recipes" render={WithAuthAndLayout(RecipesPage)}/>
+          <Route exact path="/bottles/:bottleId" render={WithAuthAndLayout(EditBottlePage)}/>
+          <Route exact path="/bottles" render={WithAuthAndLayout(BottlesPage)}/>
+          <Route exact path="/settings" render={WithAuthAndLayout(SettingsPage)}/>
+          <Route exact path="/api/explorer" render={WithAuthAndLayout(ApiExplorerPage)}/>
         </Switch>
       </BrowserRouter>
     </React.Fragment>

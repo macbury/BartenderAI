@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import Three from 'three'
-import { Threexx } from 'ar.js'
+//import Three from 'three'
+//import { Threexx } from 'ar.js'
 // @inject(({ bottles: { list, refresh, loading } }) => {
 //   return { refresh, list, loading }
 // })
