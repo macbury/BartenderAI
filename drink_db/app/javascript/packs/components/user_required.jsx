@@ -36,7 +36,7 @@ export default class UserRequired extends React.Component {
         <div className="login-container">
           <img src={beerLogo} />
           <br/>
-          <a href="/auth/google_oauth2" className="btn btn-primary btn-lg">
+          <a href={`/auth?redirect_to=${window.location.pathname}`} className="btn btn-primary btn-lg">
             Sign in using Google
           </a>
         </div>

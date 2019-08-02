@@ -1,4 +1,9 @@
 class SessionsController < ApplicationController
+  def new
+    session[:redirect_to] = params[:redirect_to] || '/'
+    redirect_to '/auth/google_oauth2'
+  end
+
   def create
     CreateSession.call(omniauth) do |transaction|
       transaction.success do |user|
@@ -13,7 +18,7 @@ class SessionsController < ApplicationController
       end
     end
 
-    redirect_to root_path
+    redirect_to session[:redirect_to]
   end
 
   def destroy

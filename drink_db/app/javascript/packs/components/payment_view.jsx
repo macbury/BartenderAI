@@ -2,7 +2,6 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import QRCode from 'qrcode.react'
 import { Spinner } from 'reactstrap'
-import { Redirect } from 'react-router-dom'
 import TutorialQuotes from './tutorial_quotes'
 
 

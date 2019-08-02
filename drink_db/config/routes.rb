@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/api/ping', to: 'ping#update'
   match '/api', to: 'graphql#execute', as: :api, via: [:get, :post]
 
+  get 'auth', to: 'sessions#new'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
