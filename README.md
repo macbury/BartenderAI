@@ -34,3 +34,10 @@ key.addr
 sig = key.sign("data")
 key.verify("data", sig)
 recovered_key = Bitcoin::Key.from_base58(key.to_base58)`
+
+Interaction QR
+- has marker for AR
+- has url to bartender.url/interact
+  - if btc payments enabled then redirect to current order bitcoin address
+  - else redirect to vr ui
+- at center codest logo?
