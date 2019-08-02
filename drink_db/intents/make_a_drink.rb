@@ -7,7 +7,7 @@ intent 'MakeDrink' do
     order = response.success
     recipe = order.recipe
     message = I18n.t(
-      order.waiting_for_invoice? ? 'alexa.success.waiting_for_invoice' : 'alexa.success.make_a_drink', 
+      order.waiting_for_payment? ? 'alexa.success.waiting_for_invoice' : 'alexa.success.make_a_drink', 
       name: recipe.name
     ).sample
 
