@@ -22,6 +22,7 @@ import ApiExplorerPage from './pages/api_explorer'
 import PaymentsPage from './pages/payments'
 import OrdersPage from './pages/orders'
 import SettingsPage from './pages/settings'
+import ArUIPage from './pages/ar_ui'
 
 const WithAuth = (Component) => {
   return function(props) {
@@ -42,7 +43,8 @@ const AppRouter = () => (
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/recipes" />}/>
-          <Route exact path="/payments" component={PaymentsPage}/>
+          <Route exact path="/payments" component={WithAuth(PaymentsPage)} />
+          <Route exact path="/ar" component={ArUIPage} />
           <Route exact path="/orders" render={WithAuth(OrdersPage)}/>
           <Route exact path="/recipes/new" render={WithAuth(NewRecipePage)}/>
           <Route exact path="/recipes/:recipeId" render={WithAuth(EditRecipePage)}/>
