@@ -19,6 +19,7 @@ class Order < ApplicationRecord
   end
 
   def bitcoin
+    return unless self.bitcoin_key
     @bitcoin ||= Bitcoin::Key.from_base58(self.bitcoin_key)
   end
 
