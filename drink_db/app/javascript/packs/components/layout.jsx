@@ -6,7 +6,7 @@ import OrderNavBar from './order_navbar'
 
 export default function Layout({ children }) {
   return (
-    <React.Fragment>
+    <div className="layout">
       <Header />
 
       <div className="container">
@@ -18,6 +18,6 @@ export default function Layout({ children }) {
         <GithubCorner href="https://github.com/macbury/BartenderAI" bannerColor="#802961" />
       </div>
       
-    </React.Fragment>
+    </div>
   )
 }

@@ -56,7 +56,7 @@ const AppRouter = () => (
           <Route exact path="/" render={() => <Redirect to="/recipes" />}/>
           <Route exact path="/payments/:mode" component={WithAuth(PaymentsPage)} />
           <Route exact path="/interact" component={WithAuth(InteractPage)} />
-          <Route exact path="/ar" component={WithAuth(ArUIPage)} />
+          <Route exact path="/ar" component={ArUIPage} />
           <Route exact path="/orders" render={WithAuthAndLayout(OrdersPage)}/>
           <Route exact path="/recipes/new" render={WithAuthAndLayout(NewRecipePage)}/>
           <Route exact path="/recipes/:recipeId" render={WithAuthAndLayout(EditRecipePage)}/>
