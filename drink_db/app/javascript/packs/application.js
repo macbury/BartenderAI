@@ -11,6 +11,8 @@ import './styles'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import AppRouter from './router'
+import * as THREE from 'three'
+window.THREE = THREE
 
 document.addEventListener('DOMContentLoaded', () => {
   if ('serviceWorker' in navigator) {
