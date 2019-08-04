@@ -7,6 +7,14 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const AutoDllPlugin = require('autodll-webpack-plugin')
 const { resolve } = require('path')
 
+environment.loaders.append('resolve three', {
+  test: require.resolve('three'),
+  use: [{
+    loader: 'expose-loader',
+    options: 'THREE'
+  }]
+})
+
 environment.plugins.append('html',
   new HtmlWebpackPlugin({
     inject: 'body',
@@ -27,27 +35,6 @@ environment.plugins.append('pwa', new WorkboxPlugin.GenerateSW({
 }))
 
 environment.plugins.insert('HashedModuleIds', new webpack.HashedModuleIdsPlugin(), { before: 'manifest' })
-
-environment.plugins.append(
-  'CommonsChunkVendor',
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'vendor',
-    minChunks: (module) => {
-      // this assumes your vendor imports exist in the node_modules directory
-      return module.context && module.context.indexOf('node_modules') !== -1
-    }
-  })
-)
-
-environment.plugins.append(
-  'CommonsChunkManifest',
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'manifest',
-    minChunks: Infinity
-  })
-)
-
-
 environment.plugins.append('cache', new HardSourceWebpackPlugin())
 
 environment.plugins.append('dll', new AutoDllPlugin({
