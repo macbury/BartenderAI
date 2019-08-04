@@ -2,8 +2,21 @@ const webpack = require('webpack')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 const { environment } = require('@rails/webpacker')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const AutoDllPlugin = require('autodll-webpack-plugin')
 const { resolve } = require('path')
+
+environment.plugins.append('html',
+  new HtmlWebpackPlugin({
+    inject: 'body',
+    alwaysWriteToDisk: true,
+    filename: '../index.html',
+    template: resolve('app', 'javascript', 'index.html')
+  })
+)
+
+environment.plugins.append('hardisk', new HtmlWebpackHarddiskPlugin())
 
 environment.plugins.append('fuckFlow', new webpack.ContextReplacementPlugin(/graphql-language-service-interface[\/\\]dist/, /\.js$/))
 environment.plugins.append('pwa', new WorkboxPlugin.GenerateSW({
@@ -12,14 +25,6 @@ environment.plugins.append('pwa', new WorkboxPlugin.GenerateSW({
   importWorkboxFrom: 'local',
   include: [/\.svg$/]
 }))
-
-environment.plugins.append(
-  'CommonsChunkManifest',
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'manifest',
-    minChunks: Infinity
-  })
-)
 
 environment.plugins.insert('HashedModuleIds', new webpack.HashedModuleIdsPlugin(), { before: 'manifest' })
 
@@ -34,10 +39,19 @@ environment.plugins.append(
   })
 )
 
+environment.plugins.append(
+  'CommonsChunkManifest',
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'manifest',
+    minChunks: Infinity
+  })
+)
+
+
 environment.plugins.append('cache', new HardSourceWebpackPlugin())
 
 environment.plugins.append('dll', new AutoDllPlugin({
-  filename: '[name].dll.js',
+  filename: 'libs.dll.js',
   inject: true,
   //debug: isDevelopment,
   path: "",
@@ -65,32 +79,12 @@ environment.plugins.append('dll', new AutoDllPlugin({
   }
 }))
 
-environment.loaders.append('three', { 
-  test: require.resolve('three'),
-  use: [
-    {
-      loader: 'expose', options: 'THREE'
-    }
-  ]
-})
-
-environment.config.merge({
-  resolve:{
-    alias: {
-      'ar': resolve(__dirname, '../../app/javascript/packs/lib/ar')
-    }
-  }
-})
-
-
 const webpackConfig = environment.toWebpackConfig()
 
 module.exports = {
   ...webpackConfig,
   target: 'web',
   entry: {
-    application: resolve('app/javascript/packs/application.tsx')
+    application: resolve('app/javascript/packs/application.js')
   }
 }
-
-module.exports = environment.toWebpackConfig()

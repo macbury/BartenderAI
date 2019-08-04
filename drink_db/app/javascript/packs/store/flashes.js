@@ -5,6 +5,6 @@ class Flashes {
 }
 
 const flashes = new Flashes()
-flashes.messages = window.flashes
+flashes.messages = [] //window.flashes
 
 export default flashes
