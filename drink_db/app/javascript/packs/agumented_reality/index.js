@@ -10,12 +10,8 @@ import markerPatternUrl from './pattern-marker.patt'
 export default class AgumentedReality {
   constructor(container) {
     this.container = container
-    this.rendererCss = new THREE.WebGLRenderer({
-      antialias: true,
-		  alpha: true
-    })
+    this.rendererCss = new CSS3DRenderer()
     this.rendererCss.setSize(window.innerWidth, window.innerHeight)
-    this.rendererCss.setClearColor(new THREE.Color('lightgrey'), 0)
     container.appendChild(this.rendererCss.domElement)
 
     this.scene = new THREE.Scene()
@@ -53,29 +49,29 @@ export default class AgumentedReality {
   }
 
   addComponent() {
-    // const element = document.createElement( 'div' );
-    // element.className = 'element';
-    // element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
-    // element.style.width = "120px";
-    // element.style.height = "120px";
+    const element = document.createElement( 'div' );
+    element.className = 'element';
+    element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+    element.style.width = "120px";
+    element.style.height = "120px";
 
-    // const object = new CSS3DObject(element)
-    // this.scene.add(object)
+    const object = new CSS3DObject(element)
+    this.scene.add(object)
 
-    var geometry	= new THREE.CubeGeometry(1,1,1);
-    var material	= new THREE.MeshNormalMaterial({
-      transparent : true,
-      opacity: 0.5,
-      side: THREE.DoubleSide
-    });
-    var mesh	= new THREE.Mesh( geometry, material );
-    mesh.position.y	= geometry.parameters.height/2
-    this.scene.add( mesh );
-    var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-    var material	= new THREE.MeshNormalMaterial();
-    var mesh	= new THREE.Mesh( geometry, material );
-    mesh.position.y	= 0.5
-    this.scene.add( mesh );
+    // var geometry	= new THREE.CubeGeometry(1,1,1);
+    // var material	= new THREE.MeshNormalMaterial({
+    //   transparent : true,
+    //   opacity: 0.5,
+    //   side: THREE.DoubleSide
+    // });
+    // var mesh	= new THREE.Mesh( geometry, material );
+    // mesh.position.y	= geometry.parameters.height/2
+    // this.scene.add( mesh );
+    // var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
+    // var material	= new THREE.MeshNormalMaterial();
+    // var mesh	= new THREE.Mesh( geometry, material );
+    // mesh.position.y	= 0.5
+    // this.scene.add( mesh );
   }
 
   onWindowResize = () => {
