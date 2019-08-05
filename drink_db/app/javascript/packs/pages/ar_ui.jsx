@@ -1,9 +1,9 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer'
 import  "script-loader!three"
 import  "script-loader!aframe"
 import  "script-loader!./../../../../node_modules/ar.js/three.js/build/ar.js"
+import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer'
 // Yeah, this is hackish as fuck... but it works!
 
 
