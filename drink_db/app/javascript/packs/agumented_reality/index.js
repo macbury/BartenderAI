@@ -7,6 +7,9 @@ import cameraParametersUrl from '../../../../node_modules/ar.js/data/data/camera
 import markerPatternUrl from '../../../../node_modules/ar.js/data/data/patt.hiro'
 //import markerPatternUrl from './pattern-marker.patt'
 
+// check marker root
+// move camera as farher
+// sync with css style
 export default class AgumentedReality {
   constructor(container) {
     this.glRenderer = new THREE.WebGLRenderer({
@@ -56,7 +59,6 @@ export default class AgumentedReality {
       patternUrl
     })
 
-
     window.addEventListener('resize', this.onWindowResize)
     document.body.style.overflow = 'hidden'
     this.scene.visible = false
@@ -82,10 +84,8 @@ export default class AgumentedReality {
       side: THREE.DoubleSide
     });
 
-    var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-    var material	= new THREE.MeshNormalMaterial();
     var mesh	= new THREE.Mesh( geometry, material );
-    mesh.position.y	= 0.5
+	  mesh.position.y	= geometry.parameters.height/2
     this.markerRoot.add(mesh)
   }
 
