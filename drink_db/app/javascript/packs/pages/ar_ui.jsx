@@ -1,9 +1,10 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import  "script-loader!three"
 import  "script-loader!aframe"
+import  "script-loader!three"
 import  "script-loader!./../../../../node_modules/ar.js/three.js/build/ar.js"
 import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer'
+import cameraParametersUrl from '../../../../node_modules/ar.js/data/data/camera_para.dat'
 // Yeah, this is hackish as fuck... but it works!
 
 
@@ -35,7 +36,13 @@ export default class ArUIPage extends React.Component {
       sourceType : 'webcam'
     })
 
+    this.arToolkitContext = new THREEx.ArToolkitContext({
+      cameraParametersUrl,
+      detectionMode: 'mono',
+    })
+
     this.arToolkitSource.init(this.onWindowResize)
+    window.addEventListener('resize', this.onWindowResize)
 
     // this.renderer3d = new THREE.WebGLRenderer3d({ canvas: this.el })
     // this.renderer3d.setClearColor(new THREE.Color('red'), 0)
@@ -52,13 +59,12 @@ export default class ArUIPage extends React.Component {
 
   onWindowResize = () => {
     this.arToolkitSource.onResizeElement()
-    this.arToolkitSource.copyElementSizeTo(renderer.domElement)
+    this.arToolkitSource.copyElementSizeTo(this.rendererCss.domElement)
     if( this.arToolkitSource.arController !== null ){
-			this.arToolkitSource.copyElementSizeTo(this.arToolkitSource.arController.canvas)
+			//this.arToolkitSource.copyElementSizeTo(this.arToolkitSource.arController.canvas)
 		}
     // this.camera.aspect = window.innerWidth / window.innerHeight;
     // this.camera.updateProjectionMatrix();
-    // this.renderer.setSize( window.innerWidth, window.innerHeight );
   }
 
   loop = () => {

@@ -15,6 +15,16 @@ environment.loaders.append('resolve three', {
   }]
 })
 
+environment.loaders.append('resolve files', {
+  test: /\.(dat)$/,
+  use: [
+    {
+      loader: 'file-loader',
+      options: {},
+    },
+  ]
+})
+
 environment.plugins.append('html',
   new HtmlWebpackPlugin({
     inject: 'body',
