@@ -9,7 +9,7 @@ class IFTTWebhook
     end
   end
 
-  def trigger(event_name:, drink_name:)
+  def trigger(event_name:, drink_name: nil)
     self.class.post(
       "/trigger/#{event_name}/with/key/#{ENV.fetch('IFTTT_KEY')}", 
       {

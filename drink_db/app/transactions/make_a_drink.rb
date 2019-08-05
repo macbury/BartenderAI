@@ -16,6 +16,7 @@ class MakeADrink < BaseTransaction
   def calculate_required_liquid(recipe)
     recipe.proportions.each do |proportion|
       if proportion.bottle.liquid_left - proportion.amount < 0
+        iftt.trigger('out_of_liquid', proportion.bottle.content)
         return Failure(["Out of #{proportion.bottle.content}!"])
       end
     end
@@ -41,5 +42,11 @@ class MakeADrink < BaseTransaction
     else
       recipe.orders.create!(status: :pending)
     end
+  end
+
+  private
+
+  def iftt
+    @iftt ||= IFTTWebhook.new
   end
 end
