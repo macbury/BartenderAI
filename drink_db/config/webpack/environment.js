@@ -61,9 +61,14 @@ environment.plugins.append('dll', new AutoDllPlugin({
       'react-toastify',
       'reactstrap',
       'stats.js',
-      'unfetch'
+      'unfetch',
+      'aframe'
     ]
   }
+}))
+
+environment.plugins.append('provide',  new webpack.ProvidePlugin({
+  THREE: 'three'
 }))
 
 const webpackConfig = environment.toWebpackConfig()
