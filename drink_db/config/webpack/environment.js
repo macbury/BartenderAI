@@ -41,7 +41,15 @@ environment.plugins.append('pwa', new WorkboxPlugin.GenerateSW({
   clientsClaim: true,
   skipWaiting: true,
   importWorkboxFrom: 'local',
-  include: [/\.svg$/]
+  include: [
+    /\.svg$/,
+    /\.html$/,
+    /\.data$/,
+    /\.pat$/,
+    /\.hiro$/,
+    /\.png$/,
+    /\.css$/
+  ]
 }))
 
 environment.plugins.insert('HashedModuleIds', new webpack.HashedModuleIdsPlugin(), { before: 'manifest' })
@@ -72,7 +80,17 @@ environment.plugins.append('dll', new AutoDllPlugin({
       'reactstrap',
       'stats.js',
       'unfetch',
-      'aframe'
+      'aframe',
+      'isomorphic-fetch',
+      'graphiql-subscriptions-fetcher',
+      'graphql-ruby-client',
+      'mobx-react',
+      'mobx',
+      'graphiql',
+      'apollo-link',
+      'graphql-tag',
+      'classnames',
+      'd3'
     ]
   }
 }))
