@@ -56,7 +56,8 @@ export default class AgumentedReality {
 
     this.markerControls = new THREEx.ArMarkerControls(this.arToolkitContext, this.markerRoot, {
       type: 'pattern', 
-      patternUrl
+      patternUrl,
+      smooth: true,
     })
 
     window.addEventListener('resize', this.onWindowResize)
