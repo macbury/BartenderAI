@@ -10,14 +10,18 @@ import markerPatternUrl from '../../../../node_modules/ar.js/data/data/patt.hiro
 // check marker root
 // move camera as farher
 // sync with css style
+
 export default class AgumentedReality {
   constructor(container) {
+    this.tempVec3 = new THREE.Vector3()
+    this.tempVec2 = new THREE.Vector2()
     this.glRenderer = new THREE.WebGLRenderer({
       antialias: true,
 		  alpha: true
     })
     this.glRenderer.setSize(window.innerWidth, window.innerHeight)
     this.glRenderer.setClearColor(new THREE.Color('lightgrey'), 0)
+    this.glRenderer.setPixelRatio(window.devicePixelRatio)
     container.appendChild(this.glRenderer.domElement)
 
     this.container = container
@@ -48,20 +52,22 @@ export default class AgumentedReality {
     })
 
     this.markerRoot = new THREE.Group()
+    this.uiRoot = new THREE.Group()
     this.scene.add(this.markerRoot)
+    this.scene.add(this.uiRoot)
 
-    // this.markerControls = new THREEx.ArMarkerControls(this.arToolkitContext, this.camera, {
-    //   type : 'pattern',
-    //   patternUrl : markerPatternUrl,
-    //   changeMatrixMode: 'cameraTransformMatrix',
-    //   smooth: true
-    // })
-
-    this.markerControls = new THREEx.ArMarkerControls(this.arToolkitContext, this.markerRoot, {
-      type: 'pattern', 
-      patternUrl: markerPatternUrl,
-      smooth: false,
+    this.markerControls = new THREEx.ArMarkerControls(this.arToolkitContext, this.glCamera, {
+      type : 'pattern',
+      patternUrl : markerPatternUrl,
+      changeMatrixMode: 'cameraTransformMatrix',
+      smooth: true
     })
+
+    // this.markerControls = new THREEx.ArMarkerControls(this.arToolkitContext, this.markerRoot, {
+    //   type: 'pattern', 
+    //   patternUrl: markerPatternUrl,
+    //   smooth: false,
+    // })
 
     window.addEventListener('resize', this.onWindowResize)
     document.body.style.overflow = 'hidden'
@@ -75,14 +81,16 @@ export default class AgumentedReality {
     const element = document.createElement( 'div' );
     element.className = 'element';
     element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
-    element.style.width = "120px";
-    element.style.height = "120px";
+    element.style.width = "1px";
+    element.style.height = "1px";
 
     const object = new CSS3DObject(element)
-    this.scene.add(object)
+    this.uiRoot.add(object)
 
     var geometry	= new THREE.PlaneGeometry(1,1);
-    var material	= new THREE.MeshNormalMaterial();
+    var material	= new THREE.MeshNormalMaterial({
+      side: THREE.DoubleSide
+    });
 
     var mesh	= new THREE.Mesh( geometry, material );
     mesh.position.y	= geometry.parameters.height/2
@@ -110,8 +118,23 @@ export default class AgumentedReality {
       this.arToolkitContext.update(this.arToolkitSource.domElement)
       this.scene.visible = this.glCamera.visible
     }
-    
+
+    this.glCamera.updateMatrixWorld()
+    // this.uiRoot.position.copy(this.markerRoot.position)
+    //                     .unproject(this.glCamera)
+    //                     .project(this.uiCamera)
+    // pobierz za pomoca glCamera pozycje obiektu na ekranie
+    // zcastuj pozycje w pixelach na pozycje w uiCamera
+    // this.uiRoot.rotation.copy(this.markerRoot.rotation)
+    // this.uiRoot.updateMatrix()
+
+    //console.log('position', this.tempVec3.set(0, 0, 0).unproject(this.glCamera).project(this.uiCamera))
+    this.uiCamera.position.copy(this.glCamera.position)
+    this.uiCamera.rotation.copy(this.glCamera.rotation)
+    // this.uiCamera.zoom = -100
+    this.uiCamera.updateMatrixWorld()
+    // TODO just render buttons in canvas and put them on meshes?
     this.glRenderer.render(this.scene, this.glCamera)
-    this.cssRenderer.render(this.scene, this.uiCamera)    
+    this.cssRenderer.render(this.scene, this.uiCamera)
   }
 }
