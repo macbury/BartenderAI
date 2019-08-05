@@ -21,9 +21,9 @@ export default class AgumentedReality {
     container.appendChild(this.glRenderer.domElement)
 
     this.container = container
-    this.cssRenderer = new CSS3DRenderer()
-    this.cssRenderer.setSize(window.innerWidth, window.innerHeight)
-    container.appendChild(this.cssRenderer.domElement)
+    // this.cssRenderer = new CSS3DRenderer()
+    // this.cssRenderer.setSize(window.innerWidth, window.innerHeight)
+    // container.appendChild(this.cssRenderer.domElement)
 
     this.scene = new THREE.Scene()
 
@@ -45,20 +45,20 @@ export default class AgumentedReality {
       this.onWindowResize()
     })
 
-    this.markerRoot = new THREE.Group()
-    this.scene.add(this.markerRoot)
+    // this.markerRoot = new THREE.Group()
+    // this.scene.add(this.markerRoot)
 
-    // this.markerControls = new THREEx.ArMarkerControls(this.arToolkitContext, this.camera, {
-    //   type : 'pattern',
-    //   patternUrl : markerPatternUrl,
-    //   changeMatrixMode: 'cameraTransformMatrix'
-    // })
-
-    this.markerControls = new THREEx.ArMarkerControls(this.arToolkitContext, this.markerRoot, {
-      type: 'pattern', 
-      patternUrl,
-      smooth: true,
+    this.markerControls = new THREEx.ArMarkerControls(this.arToolkitContext, this.camera, {
+      type : 'pattern',
+      patternUrl : markerPatternUrl,
+      changeMatrixMode: 'cameraTransformMatrix'
     })
+
+    // this.markerControls = new THREEx.ArMarkerControls(this.arToolkitContext, this.markerRoot, {
+    //   type: 'pattern', 
+    //   patternUrl: markerPatternUrl,
+    //   smooth: true,
+    // })
 
     window.addEventListener('resize', this.onWindowResize)
     document.body.style.overflow = 'hidden'
@@ -87,12 +87,12 @@ export default class AgumentedReality {
 
     var mesh	= new THREE.Mesh( geometry, material );
 	  mesh.position.y	= geometry.parameters.height/2
-    this.markerRoot.add(mesh)
+    this.scene.add(mesh)
   }
 
   onWindowResize = () => {
     this.arToolkitSource.onResizeElement()
-    this.arToolkitSource.copyElementSizeTo(this.cssRenderer.domElement)
+    this.arToolkitSource.copyElementSizeTo(this.glRenderer.domElement)
     if( this.arToolkitContext.arController !== null ){
       this.camera.projectionMatrix.copy(this.arToolkitContext.getProjectionMatrix())
 			this.arToolkitSource.copyElementSizeTo(this.arToolkitContext.arController.canvas)
@@ -107,6 +107,6 @@ export default class AgumentedReality {
     }
     
     this.glRenderer.render(this.scene, this.camera)
-    this.cssRenderer.render(this.scene, this.camera)    
+    // this.cssRenderer.render(this.scene, this.camera)    
   }
 }
