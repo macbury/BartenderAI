@@ -5,4 +5,10 @@
   right: 0px;
   overflow: hidden;
   bottom: 0px;
+
+  & > div, & > canvas {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
 }
