@@ -45,7 +45,7 @@ environment.plugins.append('pwa', new WorkboxPlugin.GenerateSW({
 }))
 
 environment.plugins.insert('HashedModuleIds', new webpack.HashedModuleIdsPlugin(), { before: 'manifest' })
-environment.plugins.append('cache', new HardSourceWebpackPlugin())
+//environment.plugins.append('cache', new HardSourceWebpackPlugin())
 
 environment.plugins.append('dll', new AutoDllPlugin({
   filename: 'libs.dll.js',
