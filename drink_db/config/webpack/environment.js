@@ -16,7 +16,7 @@ environment.loaders.append('resolve three', {
 })
 
 environment.loaders.append('resolve files', {
-  test: /\.(dat|hiro)$/,
+  test: /\.(dat|hiro|patt)$/,
   use: [
     {
       loader: 'file-loader',

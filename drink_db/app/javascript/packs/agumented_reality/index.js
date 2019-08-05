@@ -4,7 +4,8 @@ import  "script-loader!aframe"
 import  "script-loader!./../../../../node_modules/ar.js/three.js/build/ar.js"
 import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer'
 import cameraParametersUrl from '../../../../node_modules/ar.js/data/data/camera_para.dat'
-import markerPatternUrl from '../../../../node_modules/ar.js/data/data/patt.hiro'
+//import markerPatternUrl from '../../../../node_modules/ar.js/data/data/patt.hiro'
+import markerPatternUrl from './pattern-marker.patt'
 
 export default class AgumentedReality {
   constructor(container) {
