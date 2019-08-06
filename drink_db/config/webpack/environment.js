@@ -55,45 +55,45 @@ environment.plugins.append('pwa', new WorkboxPlugin.GenerateSW({
 environment.plugins.insert('HashedModuleIds', new webpack.HashedModuleIdsPlugin(), { before: 'manifest' })
 //environment.plugins.append('cache', new HardSourceWebpackPlugin())
 
-environment.plugins.append('dll', new AutoDllPlugin({
-  filename: 'libs.dll.js',
-  inject: true,
-  //debug: isDevelopment,
-  path: "",
-  entry: {
-    vendor: [
-      'react',
-      'react-dom',
-      'three',
-      'actioncable',
-      'apollo-cache-inmemory',
-      'apollo-client',
-      'apollo-link-error',
-      'apollo-link-http',
-      'qrcode.react',
-      'react-color',
-      'react-github-corner',
-      'react-router',
-      'react-router-dom',
-      'react-sortable-hoc',
-      'react-toastify',
-      'reactstrap',
-      'stats.js',
-      'unfetch',
-      'aframe',
-      'isomorphic-fetch',
-      'graphiql-subscriptions-fetcher',
-      'graphql-ruby-client',
-      'mobx-react',
-      'mobx',
-      'graphiql',
-      'apollo-link',
-      'graphql-tag',
-      'classnames',
-      'd3'
-    ]
-  }
-}))
+// environment.plugins.append('dll', new AutoDllPlugin({
+//   filename: 'libs.dll.js',
+//   inject: true,
+//   //debug: isDevelopment,
+//   path: "",
+//   entry: {
+//     vendor: [
+//       'react',
+//       'react-dom',
+//       'three',
+//       'actioncable',
+//       'apollo-cache-inmemory',
+//       'apollo-client',
+//       'apollo-link-error',
+//       'apollo-link-http',
+//       'qrcode.react',
+//       'react-color',
+//       'react-github-corner',
+//       'react-router',
+//       'react-router-dom',
+//       'react-sortable-hoc',
+//       'react-toastify',
+//       'reactstrap',
+//       'stats.js',
+//       'unfetch',
+//       'aframe',
+//       'isomorphic-fetch',
+//       'graphiql-subscriptions-fetcher',
+//       'graphql-ruby-client',
+//       'mobx-react',
+//       'mobx',
+//       'graphiql',
+//       'apollo-link',
+//       'graphql-tag',
+//       'classnames',
+//       'd3'
+//     ]
+//   }
+// }))
 
 environment.plugins.append('provide',  new webpack.ProvidePlugin({
   THREE: 'three'
