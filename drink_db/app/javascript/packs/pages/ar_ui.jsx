@@ -14,12 +14,7 @@ export default class ArUIPage extends React.Component {
   }
 
   render() {
-    //https://threejs.org/examples/?q=css3d#css3d_periodictable
-    // show grid with list of drinks
-    // you can tap to make a drink
-    // if there is a drink in queue show a progressbar
     return (
-      // <canvas ref={(ref) => this.el = ref} className="ar-container"></canvas>
       <div ref={(ref) => this.el = ref} className="ar-container"></div>
     )
   }
