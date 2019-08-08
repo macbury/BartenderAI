@@ -9,17 +9,14 @@
 @import "./components/recipes";
 @import "./components/ar";
 
-#root, body, html {
-  height: 100%;
-}
-
 .layout {
-  margin-top: 80px;
+  margin-top: 100px;
   margin-bottom: 100px;
 }
 
 .navbar {
-  background-color: lighten(rgba(21, 32, 43, 0.90), 10%);
+  background-color: $body-bg;
+  border-bottom: 1px solid $primary;
 
   .navbar-brand {
     position: relative;
@@ -31,6 +28,10 @@
       width: 24px;
       top: 6px;
     }
+  }
+
+  .nav-item a.active {
+    border-bottom: 4px solid $primary;
   }
 }
 
