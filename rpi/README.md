@@ -29,3 +29,5 @@ sudo systemctl start bartender
 | -------------  | ------------- | 
 | Sonic Sensor | [18](https://pinout.xyz/pinout/pin12_gpio18#) |
 | Led Strip | [12](https://pinout.xyz/pinout/pin32_gpio12#) |
+
+https://github.com/rpi-ws281x/rpi-ws281x-python/blob/master/examples/strandtest.py
