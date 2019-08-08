@@ -10,7 +10,7 @@ sudo systemctl enable bartender
 sudo systemctl start bartender
 ```
 
-## Pin mappings
+## Relay mappings
 
 | Bottle location | BCM | Relay PIN |
 | -------------  | ------------- | ------------- |
@@ -22,3 +22,10 @@ sudo systemctl start bartender
 | 6 | [23](https://pinout.xyz/pinout/pin16_gpio23) | IN6 |
 | 7 | [24](https://pinout.xyz/pinout/pin18_gpio24) | IN7 |
 | 8 | [25](https://pinout.xyz/pinout/pin22_gpio25) | IN8 |
+
+## Other Pin mappings
+
+| Device | BCM 
+| -------------  | ------------- | 
+| Sonic Sensor | [18](https://pinout.xyz/pinout/pin12_gpio18#) |
+| Led Strip | [12](https://pinout.xyz/pinout/pin32_gpio12#) |
