@@ -3,7 +3,7 @@ class MakeADrink < BaseTransaction
   step :calculate_required_liquid
   step :check_for_free_bartender
   try :create_order, catch: ActiveRecord::RecordInvalid
-  tee :push_webhooks
+  #tee :push_webhooks
 
   def find_recipe(name_or_id)
     recipe = Recipe.by_name_or_id(name_or_id).first
