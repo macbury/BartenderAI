@@ -10,7 +10,6 @@ class Order < ApplicationRecord
 
   monetize :price_cents, as: :price
 
-  after_save :push_to_webhooks
   after_save :push_to_client
   after_create :consume_liquid
 
@@ -31,9 +30,5 @@ class Order < ApplicationRecord
     recipe.proportions.with_content.each do |proportion|
       proportion.bottle.decrement!(:liquid_left, proportion.amount)
     end
-  end
-
-  def push_to_webhooks
-    IFTTWebhook.new.trigger_all(drink_name: self.recipe.name) if status == :done
   end
 end

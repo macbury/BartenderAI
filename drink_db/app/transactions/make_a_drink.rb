@@ -3,6 +3,7 @@ class MakeADrink < BaseTransaction
   step :calculate_required_liquid
   step :check_for_free_bartender
   try :create_order, catch: ActiveRecord::RecordInvalid
+  tee :push_webhooks
 
   def find_recipe(name_or_id)
     recipe = Recipe.by_name_or_id(name_or_id).first
@@ -41,6 +42,12 @@ class MakeADrink < BaseTransaction
       )
     else
       recipe.orders.create!(status: :pending)
+    end
+  end
+
+  def push_webhooks(recipe)
+    ENV.fetch('IFTTT_EVENTS').split(',').each do |event_name|
+      iftt.trigger(event_name: event_name, drink_name: recipe.name)
     end
   end
 
