@@ -26,7 +26,7 @@ export default class RecipesPage extends React.Component {
           {recipes.map((recipe) => <Recipe makeADrink={makeADrink} recipe={recipe} key={recipe.id} />)}
         </div>
 
-        <Link to="/recipes/new" className="btn btn-block btn-lg mt-4 btn-secondary">Create new recipe</Link>
+        <Link to="/recipes/new" className="btn btn-block btn-lg mt-4 btn-outline-primary">Create new recipe</Link>
       </div>
     )
   }

@@ -19,7 +19,7 @@
 }
 
 .navbar {
-  background-color: rgba(33, 33, 33, 0.95);
+  background-color: lighten(rgba(21, 32, 43, 0.90), 10%);
 
   .navbar-brand {
     position: relative;
@@ -44,6 +44,10 @@
 
 .chrome-picker {
   margin: 10px auto;
+}
+
+.github-corner {
+  position: absolute
 }
 
 .github-corner svg {

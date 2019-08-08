@@ -13,7 +13,7 @@ $gray-400: #ced4da !default;
 $gray-500: #adb5bd !default;
 $gray-600: #999 !default;
 $gray-700: #444 !default;
-$gray-800: #303030 !default;
+$gray-800: darken(#15202b, 2%) !default;
 $gray-900: #222 !default;
 $black:    #000 !default;
 
@@ -28,8 +28,8 @@ $green:   #00bc8c !default;
 $teal:    #20c997 !default;
 $cyan:    #3498DB !default;
 
-$primary:       #802961 !default;
-$secondary:     $gray-700 !default;
+$primary:       rgb(121, 75, 196) !default;
+$secondary:     darken($primary, 25%) !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
@@ -41,12 +41,12 @@ $yiq-contrasted-threshold:  175 !default;
 
 // Body
 
-$body-bg:                   $gray-900 !default;
+$body-bg:                   rgb(21, 32, 43) !default;
 $body-color:                $white !default;
 
 // Links
 
-$link-color:                $success !default;
+$link-color:                $primary !default;
 
 // Fonts
 
