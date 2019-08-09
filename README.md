@@ -1,6 +1,6 @@
 ![Diagram](graph.png)
 
-ADA - Autonomus Distributor Alcohol
+AI - Alcohol injector
 
 # Features
 

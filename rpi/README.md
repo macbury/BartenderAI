@@ -25,7 +25,7 @@ sudo systemctl start bartender
 
 ## Other Pin mappings
 
-| Device | BCM 
+| Device | BCM |
 | -------------  | ------------- | 
 | Sonic Sensor | [18](https://pinout.xyz/pinout/pin12_gpio18#) |
 | Led Strip | [12](https://pinout.xyz/pinout/pin32_gpio12#) |
