@@ -2,6 +2,12 @@
 
 AI - Alcohol injector
 
+# How it works:
+https://www.youtube.com/watch?v=AEhlohTol-U&list=PLT_ALYzO6ED8amYwFmKqdX1NHqz3smHd8&index=8
+
+# Build playlist
+https://www.youtube.com/watch?v=JTVNsDXxm0c&list=PLT_ALYzO6ED8amYwFmKqdX1NHqz3smHd8
+
 # Features
 
 * List drinks
