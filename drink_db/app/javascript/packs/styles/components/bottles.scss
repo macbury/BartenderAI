@@ -1,0 +1,44 @@
+.bottles-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 300px;
+  margin: 15px auto;
+  text-decoration: none;
+  justify-content: center;
+
+  @media (min-width: 600px) {
+    & {
+      max-width: 600px;
+    }
+  }
+
+  .bottle-slot {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 148px;
+    height: 148px;
+    margin-bottom: 15px;
+    padding: 10px;
+
+    h3 {
+      margin: 0px;
+      padding-top: 10px;
+      font-size: 16px;
+      color: #fff;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      text-decoration: none;
+    }
+  }
+}

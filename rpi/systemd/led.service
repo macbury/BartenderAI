@@ -1,0 +1,18 @@
+[Unit]
+Description=Led Service
+After=network.target ntpdate.service
+
+[Service]
+Environment=PATH=/home/pi/cf2:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStartPre=/bin/bash -c 'test -p /tmp/status-led || /bin/mknod /tmp/status-led p'
+ExecStart=/bin/bash -c '/home/pi/bartender/rpi/bin/led </tmp/status-led'
+WorkingDirectory=/home/pi/bartender/rpi
+StandardOutput=inherit
+StandardError=inherit
+StartLimitBurst=1000
+Restart=always
+RestartSec=90
+User=root
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,56 @@
+@import "./bootswatch";
+
+@import "./components/user_required";
+@import "./components/api_explorer";
+@import "./components/bottles";
+@import "./components/flashes";
+@import "./components/payment_view";
+@import "./components/qr";
+@import "./components/recipes";
+@import "./components/ar";
+
+.layout {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.navbar {
+  background-color: $body-bg;
+  border-bottom: 1px solid $primary;
+
+  .navbar-brand {
+    position: relative;
+    strong {
+      margin-left: 35px;
+    }
+    img {
+      position: absolute;
+      width: 24px;
+      top: 6px;
+    }
+  }
+
+  .nav-item a.active {
+    border-bottom: 4px solid $primary;
+  }
+}
+
+.logo-accent {
+  color: $purple;
+}
+
+.form-container {
+  margin-top: 60px;
+}
+
+.chrome-picker {
+  margin: 10px auto;
+}
+
+.github-corner {
+  position: absolute
+}
+
+.github-corner svg {
+  z-index: 9000;
+}

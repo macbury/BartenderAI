@@ -1,0 +1,17 @@
+[Unit]
+Description=Bartender Service
+After=network.target ntpdate.service, led.service
+
+[Service]
+Environment=PATH=/home/pi/cf2:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/home/pi/bartender/rpi/bin/bartender
+WorkingDirectory=/home/pi/bartender/rpi
+StandardOutput=inherit
+StandardError=inherit
+StartLimitBurst=1000
+Restart=always
+RestartSec=90
+User=root
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,3 @@
+git+https://gitlab.com/jfautley/alexapy.git
+python-dotenv
+redis

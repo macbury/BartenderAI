@@ -1,0 +1,21 @@
+.ar-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  overflow: hidden;
+  bottom: 0px;
+
+  & > div, & > canvas {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+  }
+}
+
+.ar-mode {
+  overflow: hidden;
+  height: 100%;
+}

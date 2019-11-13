@@ -1,0 +1,2 @@
+web: bundle exec rails s -p $PORT
+alexa: python3 bridge/server.py
