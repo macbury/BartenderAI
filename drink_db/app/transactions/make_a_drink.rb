@@ -47,7 +47,7 @@ class MakeADrink < BaseTransaction
 
   def trigger_webhooks(order)
     ENV.fetch('IFTTT_EVENTS').split(',').each do |event_name|
-      iftt.trigger(event_name: event_name, drink_name: order.recipe.name)
+      #iftt.trigger(event_name: event_name, drink_name: order.recipe.name)
     end
   end
 
