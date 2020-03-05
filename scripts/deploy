@@ -3,7 +3,7 @@
 git subtree split --prefix drink_db -b deploy
 git checkout deploy
 cp drink_db/.env .
-python bridge/login.py
+python3 bridge/login.py
 git add --force *.pickle
 git add --force *get.html
 git add --force *post.html
