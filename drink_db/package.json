@@ -44,7 +44,7 @@
     "react-toastify": "^4.5.2",
     "reactstrap": "^7.1.0",
     "stats.js": "^0.17.0",
-    "three": "^0.107.0",
+    "three": "^0.137.0",
     "unfetch": "^4.0.1",
     "workbox-webpack-plugin": "^3.6.3",
     "autodll-webpack-plugin": "0.3",
